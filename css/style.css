@@ -386,12 +386,12 @@ header .list > li {
   list-style-type: none;
 }
 header .list > li:hover > a,
-header .list > li.active > a {
+header .list > li.current-menu-item > a {
   background-color: #f0972e;
   color: #FFF;
 }
-header .list > li:hover .sub-list,
-header .list > li.active .sub-list {
+header .list > li:hover .sub-menu,
+header .list > li.current-menu-item .sub-menu {
   opacity: 1;
   visibility: visible;
 }
@@ -404,7 +404,7 @@ header .list > li a {
   display: flex;
   align-items: center;
 }
-header .list .sub-list {
+header .list .sub-menu {
   padding: 20px 60px 10px 15px;
   position: absolute;
   background-color: #FFF;
@@ -416,7 +416,7 @@ header .list .sub-list {
   box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.1);
   transition: 0.3s all;
 }
-header .list .sub-list li {
+header .list .sub-menu li {
   white-space: nowrap;
   color: #000;
   list-style-type: none;
@@ -424,10 +424,10 @@ header .list .sub-list li {
   line-height: 2;
   font-weight: 500;
 }
-header .list .sub-list li:hover {
+header .list .sub-menu li:hover {
   color: #f0972e;
 }
-header .list .sub-list > a {
+header .list .sub-menu > a {
   padding: 0;
 }
 header .follow-us {
@@ -534,28 +534,28 @@ header .follow-us span {
     overflow: auto;
     left: 0;
   }
-  header .content .list > li.toggle-item:hover a:after,
-  header .content .list > li.toggle-item.active a:after {
+  header .content .list > li.menu-item-has-children:hover a:after,
+  header .content .list > li.menu-item-has-children.current-menu-item a:after {
     content: url('/wp-content/themes/vashishta/assets/svg/down-arrow-white.svg');
   }
-  header .content .list > li.toggle-item > a {
+  header .content .list > li.menu-item-has-children > a {
     display: flex;
     justify-content: space-between;
   }
-  header .content .list > li.toggle-item > a:after {
+  header .content .list > li.menu-item-has-children > a:after {
     content: url('/wp-content/themes/vashishta/assets/svg/down-arrow.svg');
     width: 14px;
     height: 14px;
     display: block;
   }
-  header .content .list > li.opened .sub-list {
+  header .content .list > li.opened .sub-menu {
     max-height: 120px;
   }
   header .content .list > li.opened a:after {
     -webkit-transform: rotate(-180deg);
             transform: rotate(-180deg);
   }
-  header .content .list .sub-list {
+  header .content .list .sub-menu {
     box-shadow: none;
     visibility: visible;
     opacity: 1;

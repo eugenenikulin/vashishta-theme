@@ -274,8 +274,8 @@ $(document).ready(function() {
         nav: true,
         dots: false,
         navText: [
-            '<img class="svg" src="assets/svg/icon_arrow_left.svg" alt="">',
-            '<img class="svg" src="assets/svg/icon_arrow_right.svg" alt="">'
+            '<img class="svg" src="/wp-content/themes/vashishta/assets/svg/icon_arrow_left.svg" alt="">',
+            '<img class="svg" src="/wp-content/themes/vashishta/assets/svg/icon_arrow_right.svg" alt="">'
         ]
     });
 
@@ -472,16 +472,16 @@ $(document).ready(function() {
                 "            <div class=\"wrap\">\n" +
                 "                <div class=\"fl-wr\">\n" +
                 "                    <div class=\"arrow-wr left\">\n" +
-                "                        <img src=\"assets/svg/icon_arrow_left-g.svg\" alt=\"\">\n" +
+                "                        <img src=\"/wp-content/themes/vashishta/assets/svg/icon_arrow_left-g.svg\" alt=\"\">\n" +
                 "                    </div>\n" +
                 "                    <div class=\"img-wr\">\n" +
                 "                    </div>\n" +
                 "                    <div class=\"arrow-wr right\">\n" +
-                "                        <img src=\"assets/svg/icon_arrow_right-g.svg\" alt=\"\">\n" +
+                "                        <img src=\"/wp-content/themes/vashishta/assets/svg/icon_arrow_right-g.svg\" alt=\"\">\n" +
                 "                    </div>\n" +
                 "                </div>\n" +
                 "                <h4></h4>\n" +
-                "                <img class='exit' src='assets/svg/icon_close.svg' alt=''>\n" +
+                "                <img class='exit' src='/wp-content/themes/vashishta/assets/svg/icon_close.svg' alt=''>\n" +
                 "            </div>\n" +
                 "        </div>\n" +
                 "    </div>")
@@ -605,6 +605,30 @@ $(document).ready(function() {
         var $text = $(".testimonials .block .text p"),
             $wrapper = $(".testimonials .block .text"),
             $showmore = $(".testimonials .block .text .show-more");
+
+        $showmore.click(function () {
+            $(this).parent().removeClass("hidden");
+        });
+
+        $(window).resize(function(){
+            checkHeigh();
+        });
+
+        function checkHeigh() {
+            $text.each(function(){
+                if(($(this).height() > 74 && $(window).width() > 767) || ($(this).height() > 54 && $(window).width() <= 767)){
+                    $(this).parent().addClass("hidden")
+                }
+            })
+        }
+
+        checkHeigh();
+    })();
+
+    var teachers = (function () {
+        var $text = $(".teachers .block .text p"),
+            $wrapper = $(".teachers .block .text"),
+            $showmore = $(".teachers .block .text .show-more");
 
         $showmore.click(function () {
             $(this).parent().removeClass("hidden");

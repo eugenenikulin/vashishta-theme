@@ -7,6 +7,61 @@
  * @package Vashishta
  */
 
+add_action( 'after_setup_theme', 'wpdocs_theme_setup' );
+function wpdocs_theme_setup() {
+    add_image_size( 'home-course', 600, 352, true ); // (cropped)
+    add_image_size( 'testimony-photo', 	120, 120, true ); // (cropped)
+    add_image_size( 'teacher-photo', 	80, 80, true ); // (cropped)
+    add_image_size( 'gallery-thumb', 	200, 200, true ); // (cropped)
+}
+
+function change_post_menu_label() {
+    global $menu;
+    global $submenu;
+    $menu[5][0] = 'Calendar (retraits/cours)';
+    $submenu['edit.php'][5][0] = 'Calendar item (retrait/cours)';
+    $submenu['edit.php'][10][0] = 'Add Calendar item (retrait/cours)';
+    $submenu['edit.php'][16][0] = 'Tags';
+    echo '';
+}
+function change_post_object_label() {
+    global $wp_post_types;
+    $labels = &$wp_post_types['post']->labels;
+    $labels->name = 'Calendar (retrait/cours)';
+    $labels->singular_name = 'Calendar item (retrait/cours)';
+    $labels->add_new = 'Add';
+    $labels->add_new_item = 'Add';
+    $labels->edit_item = 'Edit';
+    $labels->new_item = 'New';
+    $labels->view_item = 'View';
+    $labels->search_items = 'Search';
+    $labels->not_found = 'Not found';
+    $labels->not_found_in_trash = 'Not found in trash';
+}
+
+add_action('init', 'change_post_object_label');
+add_action('admin_menu', 'change_post_menu_label');
+
+function revcon_change_cat_object() {
+    global $wp_taxonomies;
+    $labels = &$wp_taxonomies['category']->labels;
+    $labels->name = 'Type retrait/cours';
+    $labels->singular_name = 'Type retrait/cours';
+    $labels->add_new = 'Add type retrait/cours';
+    $labels->add_new_item = 'Add type retrait/cours';
+    $labels->edit_item = 'Edit';
+    $labels->new_item = 'New';
+    $labels->view_item = 'View';
+    $labels->search_items = 'Search';
+    $labels->not_found = 'Not found';
+    $labels->not_found_in_trash = 'Not found in Trash';
+    $labels->all_items = 'All';
+    $labels->menu_name = 'Types retrait/cours';
+    $labels->name_admin_bar = 'Types retrait/cours';
+}
+add_action( 'init', 'revcon_change_cat_object' );
+
+
 if ( ! function_exists( 'vashishta_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -129,7 +184,13 @@ function vashishta_scripts() {
 
 }
 add_action( 'wp_enqueue_scripts', 'vashishta_scripts' );
+show_admin_bar( false );
 
+function cc_mime_types($mimes) {
+  $mimes['svg'] = 'image/svg+xml';
+  return $mimes;
+}
+add_filter('upload_mimes', 'cc_mime_types');
 // Load theme styles
 function theme_styles()
 {	
@@ -146,30 +207,7 @@ function theme_styles()
     wp_enqueue_style('theme'); // Enqueue it!
 }
 add_action('wp_enqueue_scripts', 'theme_styles'); // Add Theme Stylesheet
-// theme navigation
-function theme_nav()
-{
-	wp_nav_menu(
-	array(
-		'theme_location'  => 'header-menu',
-		'menu'            => '',
-		'container'       => 'div',
-		'container_class' => 'menu-{menu slug}-container',
-		'container_id'    => '',
-		'menu_class'      => 'menu',
-		'menu_id'         => '',
-		'echo'            => true,
-		'fallback_cb'     => 'wp_page_menu',
-		'before'          => '',
-		'after'           => '',
-		'link_before'     => '',
-		'link_after'      => '',
-		'items_wrap'      => '<ul>%3$s</ul>',
-		'depth'           => 0,
-		'walker'          => ''
-		)
-	);
-}
+
 /**
  * Load Jetpack compatibility file.
  */
@@ -177,3 +215,220 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+
+// Register Custom Post Type
+function teachers_cpt() {
+
+	$labels = array(
+		'name'                  => _x( 'Teachers', 'Post Type General Name', 'vashishta' ),
+		'singular_name'         => _x( 'Teacher', 'Post Type Singular Name', 'vashishta' ),
+		'menu_name'             => __( 'Teachers', 'vashishta' ),
+		'name_admin_bar'        => __( 'Teacher', 'vashishta' ),
+		'archives'              => __( 'Teacher Archives', 'vashishta' ),
+		'attributes'            => __( 'Teacher Attributes', 'vashishta' ),
+		'parent_item_colon'     => __( 'Parent Teacher:', 'vashishta' ),
+		'all_items'             => __( 'All Teachers', 'vashishta' ),
+		'add_new_item'          => __( 'Add New Teacher', 'vashishta' ),
+		'add_new'               => __( 'Add New', 'vashishta' ),
+		'new_item'              => __( 'New Teacher', 'vashishta' ),
+		'edit_item'             => __( 'Edit Teacher', 'vashishta' ),
+		'update_item'           => __( 'Update Teacher', 'vashishta' ),
+		'view_item'             => __( 'View Teacher', 'vashishta' ),
+		'view_items'            => __( 'View Teachers', 'vashishta' ),
+		'search_items'          => __( 'Search Teacher', 'vashishta' ),
+		'not_found'             => __( 'Not found', 'vashishta' ),
+		'not_found_in_trash'    => __( 'Not found in Trash', 'vashishta' ),
+		'featured_image'        => __( 'Featured Image', 'vashishta' ),
+		'set_featured_image'    => __( 'Set featured image', 'vashishta' ),
+		'remove_featured_image' => __( 'Remove featured image', 'vashishta' ),
+		'use_featured_image'    => __( 'Use as featured image', 'vashishta' ),
+		'insert_into_item'      => __( 'Insert into Teacher', 'vashishta' ),
+		'uploaded_to_this_item' => __( 'Uploaded to this Teacher', 'vashishta' ),
+		'items_list'            => __( 'Teachers list', 'vashishta' ),
+		'items_list_navigation' => __( 'Teachers list navigation', 'vashishta' ),
+		'filter_items_list'     => __( 'Filter Teachers list', 'vashishta' ),
+	);
+	$args = array(
+		'label'                 => __( 'Teacher', 'vashishta' ),
+		'description'           => __( 'Teachers', 'vashishta' ),
+		'labels'                => $labels,
+		'supports'              => array( 'title' ),
+		'hierarchical'          => false,
+		'public'                => true,
+		'show_ui'               => true,
+		'show_in_menu'          => true,
+		'menu_position'         => 5,
+		'menu_icon'             => 'dashicons-businessman',
+		'show_in_admin_bar'     => true,
+		'show_in_nav_menus'     => true,
+		'can_export'            => true,
+		'has_archive'           => true,
+		'exclude_from_search'   => false,
+		'publicly_queryable'    => true,
+		'capability_type'       => 'page',
+	);
+	register_post_type( 'teacher', $args );
+
+}
+add_action( 'init', 'teachers_cpt', 0 );
+
+// Register Custom Post Type
+function testimonails_cpt() {
+
+	$labels = array(
+		'name'                  => _x( 'Testimonies', 'Post Type General Name', 'vashishta' ),
+		'singular_name'         => _x( 'Testimony', 'Post Type Singular Name', 'vashishta' ),
+		'menu_name'             => __( 'Testimonies', 'vashishta' ),
+		'name_admin_bar'        => __( 'Testimony', 'vashishta' ),
+		'archives'              => __( 'Testimony Archives', 'vashishta' ),
+		'attributes'            => __( 'Testimony Attributes', 'vashishta' ),
+		'parent_item_colon'     => __( 'Parent Testimony:', 'vashishta' ),
+		'all_items'             => __( 'All Testimonies', 'vashishta' ),
+		'add_new_item'          => __( 'Add New Testimony', 'vashishta' ),
+		'add_new'               => __( 'Add New', 'vashishta' ),
+		'new_item'              => __( 'New Testimony', 'vashishta' ),
+		'edit_item'             => __( 'Edit Testimony', 'vashishta' ),
+		'update_item'           => __( 'Update Testimony', 'vashishta' ),
+		'view_item'             => __( 'View Testimony', 'vashishta' ),
+		'view_items'            => __( 'View Testimonies', 'vashishta' ),
+		'search_items'          => __( 'Search Testimony', 'vashishta' ),
+		'not_found'             => __( 'Not found', 'vashishta' ),
+		'not_found_in_trash'    => __( 'Not found in Trash', 'vashishta' ),
+		'featured_image'        => __( 'Featured Image', 'vashishta' ),
+		'set_featured_image'    => __( 'Set featured image', 'vashishta' ),
+		'remove_featured_image' => __( 'Remove featured image', 'vashishta' ),
+		'use_featured_image'    => __( 'Use as featured image', 'vashishta' ),
+		'insert_into_item'      => __( 'Insert into Testimony', 'vashishta' ),
+		'uploaded_to_this_item' => __( 'Uploaded to this Testimony', 'vashishta' ),
+		'items_list'            => __( 'Testimonies list', 'vashishta' ),
+		'items_list_navigation' => __( 'Testimonies list navigation', 'vashishta' ),
+		'filter_items_list'     => __( 'Filter Testimonies list', 'vashishta' ),
+	);
+	$args = array(
+		'label'                 => __( 'Testimony', 'vashishta' ),
+		'description'           => __( 'Testimonies', 'vashishta' ),
+		'labels'                => $labels,
+		'supports'              => array( 'title' ),
+		'hierarchical'          => false,
+		'public'                => true,
+		'show_ui'               => true,
+		'show_in_menu'          => true,
+		'menu_position'         => 5,
+		'menu_icon'             => 'dashicons-format-status',
+		'show_in_admin_bar'     => true,
+		'show_in_nav_menus'     => true,
+		'can_export'            => true,
+		'has_archive'           => true,
+		'exclude_from_search'   => false,
+		'publicly_queryable'    => true,
+		'capability_type'       => 'page',
+	);
+	register_post_type( 'testimony', $args );
+
+}
+add_action( 'init', 'testimonails_cpt', 0 );
+
+function theme_pagination($page = 1, $totalitems, $limit = 5, $adjacents = 1, $targetpage = "/", $pagestring = "?pagination=")
+{       
+    //defaults
+    if(!$adjacents) $adjacents = 1;
+    if(!$limit) $limit = 15;
+    if(!$page) $page = 1;
+    if(!$targetpage) $targetpage = "/";
+    
+    //other vars
+    $prev = $page - 1;                                  //previous page is page - 1
+    $next = $page + 1;                                  //next page is page + 1
+    $lastpage = ceil($totalitems / $limit);             //lastpage is = total items / items per page, rounded up.
+    $lpm1 = $lastpage - 1;                              //last page minus 1
+    
+    /* 
+        Now we apply our rules and draw the pagination object. 
+        We're actually saving the code to a variable in case we want to draw it more than once.
+    */
+
+    $pagination = "";
+    if($lastpage > 1)
+    {   
+        //$pagination .= "<ul class=\"pagination center\">";
+        
+
+        //previous button
+        if ($page > 1) {
+            $pagination .= "<a class=\"arrow\" href=\"".$targetpage."".$pagestring."".$prev."\"><img class=\"svg \" src=\"/wp-content/themes/vashishta/assets/svg/icon_pagination_previous.svg\" alt=\"\"></a>";
+        }
+        else {
+            $pagination .= "<a class=\"arrow\" href=\"".$targetpage."".$pagestring."".$prev."\"><img class=\"svg disabled\" src=\"/wp-content/themes/vashishta/assets/svg/icon_pagination_previous.svg\" alt=\"\"></a>";
+        }
+        $pagination .= "<ul>";
+        //pages 
+        if ($lastpage < 7 + ($adjacents * 2))   //not enough pages to bother breaking it up
+        {   
+            for ($counter = 1; $counter <= $lastpage; $counter++)
+            {
+                if ($counter == $page)
+                    $pagination .= "<a href=\"\"><li class=\"active\">$counter</li></a>";
+                else
+                    $pagination .= "<a href=\"" . $targetpage . $pagestring . $counter . "\"><li>$counter</li></a>";                 
+            }
+        }
+        elseif($lastpage >= 7 + ($adjacents * 2))   //enough pages to hide some
+        {
+            //close to beginning; only hide later pages
+            if($page < 1 + ($adjacents * 3))        
+            {
+                for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++)
+                {
+                    if ($counter == $page)
+                        $pagination .= "<a href=\"\"><li class=\"active\">$counter</li></a>";
+                    else
+                        $pagination .= "<a href=\"" . $targetpage . $pagestring . $counter . "\"><li>$counter</li></a>";                 
+                }
+                $pagination .= "<li>...</li>";
+                $pagination .= "<a href=\"" . $targetpage . $pagestring . $lpm1 . "\"><li>$lpm1</li></a>";
+                $pagination .= "<a href=\"" . $targetpage . $pagestring . $lastpage . "\"><li>$lastpage</li></a>";       
+            }
+            //in middle; hide some front and some back
+            elseif($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2))
+            {
+                $pagination .= "<a href=\"" . $targetpage . $pagestring . "1\"><li>1</li></a>";
+                $pagination .= "<a href=\"" . $targetpage . $pagestring . "2\"><li>2</li></a>";
+                $pagination .= "<li>...</li>";
+                for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++)
+                {
+                    if ($counter == $page)
+                        $pagination .= "<a href=\"\"><li class=\"active\">$counter</li></a>";
+                    else
+                        $pagination .= "<a href=\"" . $targetpage . $pagestring . $counter . "\"><li>$counter</li></a>";                   
+                }
+                $pagination .= "<li>...</li>";
+                $pagination .= "<a href=\"" . $targetpage . $pagestring . $lpm1 . "\"><li>$lpm1</li></a>";
+                $pagination .= "<a href=\"" . $targetpage . $pagestring . $lastpage . "\"><li>$lastpage</li></a>";         
+            }
+            //close to end; only hide early pages
+            else
+            {
+                $pagination .= "<a href=\"" . $targetpage . $pagestring . "1\"><li>1</li></a>";
+                $pagination .= "<a href=\"" . $targetpage . $pagestring . "2\"><li>2</li></a>";
+                $pagination .= "<li>...</li>";
+                for ($counter = $lastpage - (1 + ($adjacents * 3)); $counter <= $lastpage; $counter++)
+                {
+                    if ($counter == $page)
+                        $pagination .= "<a href=\"\"><li class=\"active\">$counter</li></a>";
+                    else
+                        $pagination .= "<a href=\"" . $targetpage . $pagestring . $counter . "\"><li>$counter</li></a>";                       
+                }
+            }
+        }
+        $pagination .= "</ul>\n";
+        //next button
+        if ($page < $counter - 1) 
+            $pagination .= "<a class=\"arrow\" href=\"" . $targetpage . $pagestring . $next . "\"><img class=\"svg\" src=\"/wp-content/themes/vashishta/assets/svg/icon_pagination-next.svg\" alt=\"\"></a>";
+        else
+            $pagination .= "<a class=\"arrow\" href=\"" . $targetpage . $pagestring . $next . "\"><img class=\"svg disabled\" src=\"/wp-content/themes/vashishta/assets/svg/icon_pagination-next.svg\" alt=\"\"></a>";
+        
+    }
+    
+    return $pagination;
+
+}

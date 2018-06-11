@@ -13,12 +13,12 @@
  */
 
 get_header();
-
+if (have_posts()) : the_post();
 ?>
 <section class="retreats">
     <div class="sm-wrapper">
-        <h2>Page not found (404)</h2>
-        <p>Subscribe to newsletter to be the first to know about our latest news.</p>
+        <h2>This page is currently under construction</h2>
+        <p>Please check back soon or subscribe to newsletter to be the first to know about our latest news.</p>
 
         <a href="/" class="btn">
             <span>Back Home</span>
@@ -27,5 +27,7 @@ get_header();
     </div>
 </section>
 <?php
-
-get_footer(); ?>
+else :
+get_template_part('404');
+endif;
+get_footer();

@@ -10,26 +10,33 @@
  */
 
 ?>
-
+    <div class="subscription-popup">
+        <div class="fl-wr">
+            <img class="exit" src="<?php echo get_template_directory_uri(); ?>/assets/svg/icon_close.svg" alt=''>
+            <h2>Thank you for subscribing</h2>
+            <p>From now, we’ll keep you updated on our latest news!</p>
+        </div>
+    </div>
+    <div class="go-top-btn">
+        <img class="svg" src="<?php echo get_template_directory_uri(); ?>/assets/svg/icon_arrow_up.svg" alt="">
+    </div>
 </div>
 <footer>
     <div class="sm-wrapper">
-        <a href="" class="logo">Vasishta Yoga</a>
+        <a href="" class="logo"><?php the_field('site_title', 'option'); ?></a>
         <div class="fl-wr">
             <div class="left">
                 <div class="address-info">
                     <div class="address">
-                        <p>H.No: 36/182, Amritha Jyothi, Vengeri.</p>
-                        <p>P.O Calicut - 673010</p>
-                        <p>Kerala, South India</p>
+                       <?php the_field('adresse',48); ?>
                     </div>
                     <div class="email mt-28">
                         <img class="svg" src="<?php echo get_template_directory_uri(); ?>/assets/svg/icon_mail.svg" alt="">
-                        <a href="mailto:vasiyoga@gmail.com">vasiyoga@gmail.com</a>
+                        <a href="mailto:<?php the_field('email',48); ?>"><?php the_field('email',48); ?></a>
                     </div>
                 </div>
                 <div class="subscribe">
-                    <p>Subscribe to our newsletter to stay tuned about our courses and receive the latest news:</p>
+                    <p><?php the_field('subscribe_text','option'); ?></p>
                     <form class="mt-28" action="">
                         <input type="text" name="email" placeholder="Enter your email">
                         <button>subscribe</button>
@@ -37,8 +44,8 @@
                 </div>
             </div>
             <div class="right">
-                <p>International Yoga Federation is the largest yoga organization in the world. We are affiliated with IYF and our yoga course certificates are internationally valued.</p>
-                <div class="copyrights mt-28">© 2018 International Vasishta Yoga Research Foundation.<br>All Rights Reserved</div>
+                <p><?php the_field('footer_right_text', 'option'); ?></p>
+                <div class="copyrights mt-28"><?php the_field('copyright', 'option'); ?></div>
             </div>
         </div>
     </div>
@@ -47,7 +54,7 @@
 <script>
 
     function initMap() {
-        var myLatLng = {lat: -25.363, lng: 131.044};
+        var myLatLng = {lat: <?php the_field('lat', 48); ?>, lng: <?php the_field('lng', 48); ?>};
 
         var map = document.getElementById('map');
 
@@ -66,6 +73,11 @@
     }
 
 </script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoh_jCyYgbdGo06d1Qlt1LPvYMPhVbfD4
+&callback=initMap">
+</script>
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@14/dist/smooth-scroll.polyfills.min.js"></script>
 <?php wp_footer(); ?>
 </body>
 

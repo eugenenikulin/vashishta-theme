@@ -13,28 +13,32 @@
  */
 
 get_header();
+if (have_posts()) : the_post();
 ?>
+<section class="slider">
+    <div class="sm-wrapper">
+        <div class="owl-carousel owl-theme">
+        	<?php $images = get_field('images');
+        	foreach ($images as $image) { ?>
+        	<div class="item"><img src="<?php echo $image['image']; ?>" alt=""></div>
+        	<?php } ?>
+        </div>
+   </div>
+</section>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
+<section class="info">
+    <div class="sm-wrapper">
+        <h2><?php the_title(); ?></h2>
 
-		<?php
-		while ( have_posts() ) :
-			the_post();
-
-			get_template_part( 'template-parts/content', 'page' );
-
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
-
-		endwhile; // End of the loop.
-		?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
+        <div class="text">
+            <p><b><?php the_field('bold_text'); ?></b></p>
+            <br>
+            <?php the_content(); ?>
+        </div>
+    </div>
+</section>
 <?php
-get_sidebar();
+else :
+get_template_part('404');
+endif;
 get_footer();

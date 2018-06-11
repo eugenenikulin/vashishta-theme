@@ -17,32 +17,24 @@ get_header();
 <section class="slider main-page-slider">
         <div class="wrapper">
             <div class="owl-carousel owl-theme">
-                <div class="item"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/images_main_page/image_slider_01.jpg" alt=""></div>
-                <div class="item"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/images_main_page/image_slider_02.jpg" alt=""></div>
-                <div class="item"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/images_main_page/image_slider_03.jpg" alt=""></div>
-                <div class="item"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/images_main_page/image_slider_04.jpg" alt=""></div>
-                <div class="item"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/images_main_page/image_slider_05.jpg" alt=""></div>
-                <div class="item"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/images_main_page/image_slider_06.jpg" alt=""></div>
-                <div class="item"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/images_main_page/image_slider_07.jpg" alt=""></div>
-                <div class="item"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/images_main_page/image_slider_08.jpg" alt=""></div>
-                <div class="item"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/images_main_page/image_slider_09.jpg" alt=""></div>
-                <div class="item"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/images_main_page/image_slider_10.jpg" alt=""></div>
+                <?php $gallery = get_field('images', 'option');  ?>
+                <?php foreach ($gallery as $image) { ?>
+                    <div class="item"><img src="<?php echo $image['image']; ?>" alt=""></div>
+                <?php } ?>
             </div>
        </div>
     </section>
 
     <section class="info">
         <div class="sm-wrapper">
-            <h2>Lorem ipsum</h2>
+            <h2><?php the_field('home_heading', 'option'); ?></h2>
 
             <div class="text">
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.</p>
-                <br>
-                <p>Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
+                <?php the_field('home_text', 'option'); ?>
             </div>
 
-            <a href="" class="btn">
-                <span>read more</span>
+            <a href="<?php the_field('read_more_link', 'option'); ?>" class="btn">
+                <span><?php the_field('read_more_text', 'option'); ?></span>
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/icon_button-arrow.svg" alt="">
             </a>
         </div>
@@ -50,71 +42,54 @@ get_header();
 
     <section class="courses-list">
         <div class="sm-wrapper">
-            <h2>Courses</h2>
+            <?php $courses = get_field('select_courses','option'); //var_dump($courses); ?>
+            <h2><?php the_field('courses_heading','option'); ?></h2>
 
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor:</p>
+            <p><?php the_field('courses_description','option') ?></p>
 
             <div class="list">
-                <a href="" class="item">
-                    <div class="img-wr">
-                        <img class="placeholder" src="http://via.placeholder.com/600x352" alt="">
-                        <img class="card-img" src="<?php echo get_template_directory_uri(); ?>/assets/img/images_main_page/image_hp_courses_01.jpg" alt="">
-                    </div>
-                    <div class="text">
-                        <h3>Yoga Teacher Training<br>Course 200h</h3>
-                        <p>Course presents a systematic approach to classical Hatha Yoga practices</p>
-                        <div class="date">5th Dec 2018 - 1st Jan 2019</div>
-                    </div>
-                </a>
-                <a href="" class="item">
-                    <div class="img-wr">
-                        <img class="placeholder" src="http://via.placeholder.com/600x352" alt="">
-                        <img class="card-img" src="<?php echo get_template_directory_uri(); ?>/assets/img/images_main_page/image_hp_courses_02.jpg" alt="">
-                    </div>
-                    <div class="text">
-                        <h3>Yoga Teacher Training<br>Course 300h</h3>
-                        <p>Course aims to emphasise a deeper understanding of classical Hatha Yoga</p>
-                        <div class="date">11th Feb 2018 - 10th Mar 2019</div>
-                    </div>
-                </a>
-                <a href="" class="item">
-                    <div class="img-wr">
-                        <img class="placeholder" src="http://via.placeholder.com/600x352" alt="">
-                        <img class="card-img" src="<?php echo get_template_directory_uri(); ?>/assets/img/images_main_page/image_hp_courses_03.jpg" alt="">
-                    </div>
-                    <div class="text">
-                        <h3>Yoga Therapy Course</h3>
-                        <p>Course offers a basic understanding and integration of Yoga Therapy</p>
-                        <div class="date">11th Feb 2018 - 10th Mar 2019</div>
-                    </div>
-                </a>
+                <?php foreach ($courses as $course) {
+                    //var_dump($course['course']);
+                    the_post($course['course']->ID);
+                    $image = get_field('course_thumb');
+                    $courseTerm = get_the_category(); $courseTerm = $courseTerm[0];
+                    $title = get_field('course_title');
+                    if (!$title || $title == '')  {
+                        $title = $courseTerm->name;
+                    }
+                    $startDate = get_field('date_start'); $startDate = date('d M Y', strtotime($startDate));
+                    $endDate = get_field('date_end'); $endDate = date('d M Y', strtotime($endDate));
+                     ?>
+                    <a href="<?php echo get_category_link($courseTerm->term_id); ?>" class="item">
+                        <div class="img-wr">
+                            <img class="placeholder" src="http://via.placeholder.com/600x352" alt="">
+                            <img class="card-img" src="<?php echo $image['sizes']['home-course']; ?>" alt="">
+                        </div>
+                        <div class="text">
+                            <h3><?php echo $title; ?></h3>
+                            <p><?php echo get_field('course_description') ? get_field('course_description') : '';  ?></p>
+                            <div class="date"><?php echo $startDate; ?> - <?php echo $endDate; ?></div>
+                        </div>
+                    </a>
+                <?php } ?>
             </div>
         </div>
     </section>
-
+    <?php if (get_field('display_video_block', 'option') == true) : ?>
     <section class="info">
         <div class="sm-wrapper">
 
-            <h2>Aenean commodo ligula eget dolor</h2>
+            <h2><?php $video_block_heading = get_field('video_block_heading','option'); echo $video_block_heading ? $video_block_heading : ''; ?></h2>
 
             <div class="text">
-                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a.</p>
+                <p><?php $video_block_text = get_field('video_block_text','option'); echo $video_block_text ? $video_block_text : ''; ?></p>
             </div>
-
-            <div class="youtube-player" data-id="enAAD-7Fs8g"></div>
+            <?php preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', get_field('video_link','option'), $match);
+                $youtube_id = $match[1]; ?>
+            <div class="youtube-player" data-id="<?php echo $youtube_id; ?>"></div>
         </div>
     </section>
-<div class="go-top-btn">
-    <img class="svg" src="<?php echo get_template_directory_uri(); ?>/assets/svg/icon_arrow_up.svg" alt="">
-</div>
+    <?php endif; ?>
 
-<div class="subscription-popup">
-    <div class="fl-wr">
-        <img class="exit" src="<?php echo get_template_directory_uri(); ?>/assets/svg/icon_close.svg" alt=''>
-        <h2>Thank you for subscribing</h2>
-        <p>From now, we’ll keep you updated on our latest news!</p>
-    </div>
-</div>
 <?php
-get_sidebar();
 get_footer();
