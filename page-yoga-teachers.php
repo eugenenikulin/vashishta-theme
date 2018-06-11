@@ -89,7 +89,7 @@ $post_count = $teachers->max_num_pages * $ppp;
 		<?php } ?>
 		
 
-        <p class="want-to-leave-comment">If you want to leave comment please write to <a href="mailto:vasiyoga@gmail.com">vasiyoga@gmail.com</a>.</p>
+       <!--  <p class="want-to-leave-comment">If you want to leave comment please write to <a href="mailto:vasiyoga@gmail.com">vasiyoga@gmail.com</a>.</p> -->
     </div>
 </section>
             

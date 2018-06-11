@@ -64,7 +64,7 @@ $endDate = date('jS F, Y', strtotime($endDate));
                 </div>
                 <a href="{courseLink}" class="btn">
                     <span>read more</span>
-                    <img src="<?php echo get_template_directory_uri(); ?>assets/svg/icon_button-arrow.svg" alt="">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/icon_button-arrow.svg" alt="">
                 </a>
             </div>
         </div>
