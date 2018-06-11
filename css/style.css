@@ -798,7 +798,7 @@ footer .mt-28 {
 }
 @media only screen and (max-width: 767px) {
   footer .mt-28 {
-    margin-top: 10px;
+    margin-top: 20px;
   }
 }
 footer p,
@@ -1134,23 +1134,33 @@ footer .copyrights {
   visibility: visible;
   opacity: 1;
 }
-.video-list .fl-wr {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+.video-list .fl-wr:after {
+  display: block;
+  clear: both;
+  content: '';
 }
 .video-list .fl-wr .block {
   margin-bottom: 30px;
   width: 30%;
+  margin-right: 5%;
+  float: left;
+}
+.video-list .fl-wr .block:nth-child(3n) {
+  margin-right: 0;
 }
 @media only screen and (max-width: 767px) {
   .video-list .fl-wr .block {
     width: 48%;
+    margin-right: 4% !important;
+  }
+  .video-list .fl-wr .block:nth-child(2n) {
+    margin-right: 0 !important;
   }
 }
 @media only screen and (max-width: 480px) {
   .video-list .fl-wr .block {
     width: 100%;
+    margin-right: 0 !important;
   }
   .video-list .fl-wr .block:last-child {
     margin-bottom: 0;
@@ -1394,8 +1404,10 @@ footer .copyrights {
     margin-bottom: 20px;
   }
 }
-.courses .teachers-list .fl-wr .item:last-child {
-  margin-right: 0;
+@media only screen and (max-width: 1023px) {
+  .courses .teachers-list .fl-wr .item:nth-child(2n) {
+    margin-right: 0;
+  }
 }
 .courses .teachers-list img {
   margin-right: 30px;

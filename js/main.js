@@ -357,7 +357,7 @@ $(document).ready(function() {
         }
 
         function labnolThumb(id) {
-            var thumb = '<img class="placeholder" src="http://via.placeholder.com/1280x720">' +
+            var thumb = '<img class="placeholder" src="https://via.placeholder.com/1280x720">' +
                 '<img class="defaultImage" src="https://i.ytimg.com/vi/' + id + '/maxresdefault.jpg">',
                 play = '<div class="play-btn"><?xml version="1.0" encoding="utf-8"?>\n' +
                     '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\n' +
@@ -606,47 +606,47 @@ $(document).ready(function() {
             $wrapper = $(".testimonials .block .text"),
             $showmore = $(".testimonials .block .text .show-more");
 
-        $showmore.click(function () {
-            $(this).parent().removeClass("hidden");
-        });
-
-        $(window).resize(function(){
-            checkHeigh();
-        });
-
-        function checkHeigh() {
-            $text.each(function(){
-                if(($(this).height() > 74 && $(window).width() > 767) || ($(this).height() > 54 && $(window).width() <= 767)){
-                    $(this).parent().addClass("hidden")
-                }
-            })
-        }
-
-        checkHeigh();
-    })();
-
-    var teachers = (function () {
-        var $text = $(".teachers .block .text p"),
-            $wrapper = $(".teachers .block .text"),
-            $showmore = $(".teachers .block .text .show-more");
-
-        $showmore.click(function () {
-            $(this).parent().removeClass("hidden");
-        });
-
-        $(window).resize(function(){
-            checkHeigh();
-        });
-
-        function checkHeigh() {
-            $text.each(function(){
-                if(($(this).height() > 74 && $(window).width() > 767) || ($(this).height() > 54 && $(window).width() <= 767)){
-                    $(this).parent().addClass("hidden")
-                }
-            })
-        }
-
-        checkHeigh();
-    })();
-
-});
+			$showmore.click(function () {
+				$(this).parent().removeClass("hidden");
+			});
+	
+			$(window).resize(function(){
+				checkHeigh();
+			});
+	
+			function checkHeigh() {
+				$text.each(function(){
+					if(($(this).height() > 74 && $(window).width() > 767) || ($(this).height() > 54 && $(window).width() <= 767)){
+						$(this).parent().addClass("hidden")
+					}
+				})
+			}
+	
+			checkHeigh();
+		})();
+	
+		var teachers = (function () {
+			var $text = $(".teachers .block .text p"),
+				$wrapper = $(".teachers .block .text"),
+				$showmore = $(".teachers .block .text .show-more");
+	
+			$showmore.click(function () {
+				$(this).parent().removeClass("hidden");
+			});
+	
+			$(window).resize(function(){
+				checkHeigh();
+			});
+	
+			function checkHeigh() {
+				$text.each(function(){
+					if(($(this).height() > 74 && $(window).width() > 767) || ($(this).height() > 54 && $(window).width() <= 767)){
+						$(this).parent().addClass("hidden")
+					}
+				})
+			}
+	
+			checkHeigh();
+		})();
+	
+	});
