@@ -13,26 +13,15 @@
  */
 
 get_header();
-$ppp = 5;
-if (!$_GET['pagination']) {
-	$curPage = 1;
-} else {
-	$curPage = intval($_GET['pagination']);	
-}
-$offset = ($curPage-1)*$ppp;
 $testimonials = new WP_Query(
 	array(
 		'post_type' => 'testimony',
 		'orderby' => 'meta_value',
 		'order' => 'DESC',
 		'meta_key' => 'date',
-		'posts_per_page' => $ppp,
-		'offset' => $offset,
+		'posts_per_page' => '-1',
 	)
-);
-
-$post_count = $testimonials->max_num_pages * $ppp;
-   			 ?>
+); ?>
 <section class="testimonials">
     <div class="sm-wrapper">
         <div>
@@ -58,11 +47,6 @@ $post_count = $testimonials->max_num_pages * $ppp;
 
 <?php endwhile; ?>
 		</div>
-		<?php if ($post_count <= $ppp) {} else {?>
-			<div class="pagination">
-				<?php echo theme_pagination($curPage, $post_count, $ppp, 1, get_page_link(53), "?pagination="); ?>
-	        </div>
-		<?php } ?>
 		
 
         <p class="want-to-leave-comment">If you want to leave comment please write to <a href="mailto:vasiyoga@gmail.com">vasiyoga@gmail.com</a>.</p>

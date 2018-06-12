@@ -61,7 +61,7 @@
                     ); ?>
                     <div class="follow-us">
                         <span>Follow us</span>
-                        <a href="<?php the_field('facebook_link', 'option'); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/svg/icon_facebook.svg" alt=""></a>
+                        <a href="<?php the_field('facebook_link', 'option'); ?>" target="_blank" title="Follow us on Facebook"><img src="<?php echo get_template_directory_uri(); ?>/assets/svg/icon_facebook.svg" alt=""></a>
                     </div>
 				</div>
 				<div class="menu-btn"></div>
