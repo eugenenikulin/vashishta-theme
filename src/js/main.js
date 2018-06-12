@@ -61,7 +61,15 @@ $(document).ready(function() {
             }, 'xml');
 
         });
-    });
+	});
+	
+	// Preloader
+    var $preloader = $(".preloader");
+
+    setTimeout(function () {
+    	$preloader.addClass("hide");
+    }, 200);
+
 
     $.scrollLock = ( function scrollLockClosure() {
         'use strict';
