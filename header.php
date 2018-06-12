@@ -26,6 +26,9 @@
 <body <?php body_class(); ?>>
 <div class="pg-wrapper">
 
+	<div class="preloader">
+	</div>
+
     <header>
         <div class="wrapper">
             <div class="logo">
