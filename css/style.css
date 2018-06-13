@@ -1127,7 +1127,7 @@ footer .copyrights {
 }
 #videoPopUp .frame-wr {
   position: relative;
-  background-color: #FFF;
+  background-color: #000;
 }
 #videoPopUp .frame-wr .placeholder {
   width: 100%;
