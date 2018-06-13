@@ -1347,6 +1347,7 @@ footer .copyrights {
 }
 .courses .main-information .left ul {
   padding-left: 15px;
+  line-height: 1.5em;
 }
 .courses .main-information .left ul li {
   list-style-type: none;
