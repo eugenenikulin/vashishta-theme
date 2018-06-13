@@ -99,10 +99,11 @@ $term_id = $term->term_id;
 
                 </div>
             </div>
+            <?php $teachers = get_field('teachers','category_'.$term_id); ?>
+            <?php if (!empty($teachers)) : ?>
             <div class="teachers-list">
                 <h3>Teachers</h3>
                 <div class="fl-wr">
-                	<?php $teachers = get_field('teachers','category_'.$term_id); ?>
                 	<?php foreach ($teachers as $teacher) {  $teacher = $teacher['teacher'];  ?>
                 		<div class="item">
                 			<?php $img = get_field('photo',$teacher->ID);  ?>
@@ -119,7 +120,7 @@ $term_id = $term->term_id;
                 	<?php } ?>
                 </div>
             </div>
-
+            <?php endif; ?>
             <div class="how-to-apply">
                 <h3>How to Apply</h3>
                 <p>If you are interested in applying for this course please write to <a href="mailto:vasiyoga@gmail.com">vasiyoga@gmail.com</a>.</p>

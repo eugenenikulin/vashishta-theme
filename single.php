@@ -7,10 +7,11 @@
  * @package Vashishta
  */
 
-get_header();
-if ($_GET['preview'] == true) {
+
 the_post();
 $courseTerm = get_the_category(); $courseTerm = $courseTerm[0];
+if ($_GET['preview'] == true) {
+get_header();
 $term_id = $courseTerm ->term_id;
  ?>
 <section class="slider">
@@ -134,9 +135,11 @@ $term_id = $courseTerm ->term_id;
             <?php } ?>
         </div>
     </section>
-<?php } else {  ?>
- // TO_DO Redirect
-<?php } ?>
+<?php } else {  
+    $link = get_category_link($courseTerm->term_id);
+    //var_dump($link);
+    wp_safe_redirect($link);
+ } ?>
 
 
 
