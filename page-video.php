@@ -22,7 +22,7 @@ return $youtube_id;
 ?>
 <div id="videoPopUp">
     <div class="frame-wr">
-        <img class="placeholder" src="http://via.placeholder.com/1280x720" alt="">
+        <img class="placeholder" src="https://via.placeholder.com/1280x720" alt="">
         <img class='exit' src='<?php echo get_template_directory_uri(); ?>/assets/svg/icon_close.svg' alt=''>
     </div>
 </div>

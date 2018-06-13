@@ -62,7 +62,7 @@ get_header();
                      ?>
                     <a href="<?php echo get_category_link($courseTerm->term_id); ?>" class="item">
                         <div class="img-wr">
-                            <img class="placeholder" src="http://via.placeholder.com/600x352" alt="">
+                            <img class="placeholder" src="https://via.placeholder.com/600x352" alt="">
                             <img class="card-img" src="<?php echo $image['sizes']['home-course']; ?>" alt="">
                         </div>
                         <div class="text">

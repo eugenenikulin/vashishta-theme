@@ -32,7 +32,7 @@ $testimonials = new WP_Query(
 		if ($photo) {
 			$photodisplay = $photo['sizes']['testimony-photo'];
 		} else {
-			$photodisplay = 'http://via.placeholder.com/120x120';
+			$photodisplay = 'https://via.placeholder.com/120x120';
 		}
 
 		 ?>
