@@ -112,7 +112,7 @@ $term_id = $courseTerm ->term_id;
                 			<?php if ($img) { ?>
                 				<img src="<?php echo $img['sizes']['teacher-photo']; ?>" alt="">
                 			<?php } else { ?>
-                				<img src="http://via.placeholder.com/80x80" alt="">
+                				<img src="https://via.placeholder.com/80x80" alt="">
                 			<?php } ?>
 	                        <div>
 	                            <h4><?php echo $teacher->post_title; ?></h4>

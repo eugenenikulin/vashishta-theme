@@ -26,7 +26,7 @@ get_header(); ?>
              data-toggle="lightbox"
              data-gallery="g<?php echo $key; ?>"
              data-text="<?php echo $photo['text']; ?>">
-              <img src="http://via.placeholder.com/200x200" alt="">
+              <img src="https://via.placeholder.com/200x200" alt="">
           </a>
         <?php } ?>
       </div>
