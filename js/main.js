@@ -68,7 +68,7 @@ $(document).ready(function() {
 
     setTimeout(function () {
     	$preloader.addClass("hide");
-    }, 200);
+    }, 400);
 
 
     $.scrollLock = ( function scrollLockClosure() {
