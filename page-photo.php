@@ -18,7 +18,7 @@ get_header(); ?>
     <?php $gallery = get_field('galleries',$post->ID); ?>
     <?php foreach ($gallery as $key => $gal) { ?>
     <div>  
-      <h2>Saji portraits</h2>
+      <h2><?php echo $gal['gallery_title']; ?></h2>
       <div class="fl-wr">
         <?php foreach ($gal['gallery_photos'] as $k => $photo) { ?>
           <a href="<?php echo $photo['photo']['sizes']['large']; ?>"
