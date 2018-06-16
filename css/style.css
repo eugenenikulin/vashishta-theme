@@ -84,6 +84,9 @@ h3 {
   font-weight: 500;
   color: #f0972e;
 }
+.notransition {
+  transition: none !important;
+}
 .preloader {
   position: fixed;
   z-index: 1000;
@@ -1124,7 +1127,7 @@ footer .copyrights {
 }
 #videoPopUp .frame-wr {
   position: relative;
-  background-color: #FFF;
+  background-color: #000;
 }
 #videoPopUp .frame-wr .placeholder {
   width: 100%;
@@ -1472,17 +1475,17 @@ footer .copyrights {
   display: block;
   background-size: cover;
 }
-.photos-list .fl-wr > a:nth-child(5) {
+.photos-list .fl-wr > a:nth-child(5n) {
   margin-right: 0;
 }
 @media only screen and (max-width: 767px) {
   .photos-list .fl-wr > a {
     width: 22.4137931%;
   }
-  .photos-list .fl-wr > a:nth-child(5) {
+  .photos-list .fl-wr > a:nth-child(5n) {
     margin: 0 3.44827586% 1.8em 0;
   }
-  .photos-list .fl-wr > a:nth-child(4) {
+  .photos-list .fl-wr > a:nth-child(4n) {
     margin-right: 0;
   }
 }

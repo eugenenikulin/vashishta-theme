@@ -70,6 +70,20 @@ $(document).ready(function() {
     	$preloader.addClass("hide");
     }, 400);
 
+	// No transition on resize/reflow
+	$(window).resize(function(){
+		var $content = $('header .content');
+		var $sub_list = $('header .list .sub-menu');
+		$content.addClass('notransition');
+		$sub_list.addClass('notransition');
+		// setTimeout(function () {
+			$content[0].offsetHeight;
+			$sub_list[0].offsetHeight;
+			$content.removeClass('notransition');
+			$sub_list.removeClass('notransition');
+		// }, 1);
+	});
+	
 
     $.scrollLock = ( function scrollLockClosure() {
         'use strict';
