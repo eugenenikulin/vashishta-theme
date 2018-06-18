@@ -16,8 +16,8 @@ get_header();
 $testimonials = new WP_Query(
 	array(
 		'post_type' => 'testimony',
-		'orderby' => 'meta_value',
-		'order' => 'DESC',
+		'orderby' => 'menu_order',
+		'order' => 'ASC',
 		'meta_key' => 'date',
 		'posts_per_page' => '-1',
 	)

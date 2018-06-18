@@ -309,7 +309,7 @@ function testimonails_cpt() {
 		'description'           => __( 'Testimonies', 'vashishta' ),
 		'labels'                => $labels,
 		'supports'              => array( 'title' ),
-		'hierarchical'          => false,
+		'hierarchical'          => true,
 		'public'                => true,
 		'show_ui'               => true,
 		'show_in_menu'          => true,
@@ -327,6 +327,8 @@ function testimonails_cpt() {
 
 }
 add_action( 'init', 'testimonails_cpt', 0 );
+
+add_post_type_support( 'testimony', 'page-attributes' );
 
 function theme_pagination($page = 1, $totalitems, $limit = 5, $adjacents = 1, $targetpage = "/", $pagestring = "?pagination=")
 {       
