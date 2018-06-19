@@ -41,10 +41,15 @@ get_header(); ?>
                     <?php $htwu = get_field('hot_to_reach_us'); ?>
                     <?php foreach ($htwu as $how) { ?>
                         <tr>
-                        <td><b><?php echo $how['type']; ?>:</b></td>
-                        <td><p><?php echo $how['description']; ?></p></td>
+                        <?php if ($how['type']) { ?>
+                            <td><b><?php echo $how['type']; ?></b></td>
+                        <?php } ?>
+                        <?php if ($how['description']) { ?>
+                            <td><p><?php echo $how['description']; ?></p></td>
+                        <?php } ?>
                     </tr>
                     <?php } ?>
+                    <?php if (get_field('lat') && get_field('lng') ) : ?>
                     <tr>
                         <td><b></b></td>
                         <td>
@@ -54,6 +59,7 @@ get_header(); ?>
                             </div>
                         </td>
                     </tr>
+                    <?php endif; ?>
                 </table>
 
             </div>

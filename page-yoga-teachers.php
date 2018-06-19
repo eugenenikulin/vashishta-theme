@@ -84,7 +84,7 @@ $post_count = $teachers->max_num_pages * $ppp;
 		
 		<?php if ($post_count <= $ppp) {} else {?>
 			<div class="pagination">
-				<?php echo theme_pagination($curPage, $post_count, $ppp, 1, get_page_link(53), "?pagination="); ?>
+				<?php echo theme_pagination($curPage, $post_count, $ppp, 1, get_page_link(51), "?pagination="); ?>
 	        </div>
 		<?php } ?>
 		

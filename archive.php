@@ -45,6 +45,17 @@ $term_id = $term->term_id;
 
                          <?php the_field('curriculum_text','category_'.$term_id); ?>
                     </div>
+                    <!-- Custom blocks -->
+                    <?php $customBlocks = get_field('custom_blocks'); ?>
+                    <?php  if (!empty($custom_blocks)) { ?>
+                        <?php foreach ($customBlocks as $cb) { ?>
+                        <div class="item">
+                            <h3> <?php echo $cb['title']; ?></h3>
+                                 <?php echo $cd['content']; ?>
+                        </div>
+                        <?php } ?>
+                    <?php } ?>
+                    <!-- #Custom blocks -->
                 </div>
                 <div class="right">
                 	<?php $connected = get_field('connected_cours','category_'.$term_id); ?>

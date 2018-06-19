@@ -203,7 +203,7 @@ function theme_styles()
     wp_enqueue_style('calendar'); // Enqueue it!
     wp_register_style('owl','https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css');
     wp_enqueue_style('owl'); // Enqueue it!
-    wp_register_style('theme', get_template_directory_uri() . '/css/style.min.css', array(), '1.0', 'all');
+    wp_register_style('theme', get_template_directory_uri() . '/css/style.css', array(), '1.0', 'all');
     wp_enqueue_style('theme'); // Enqueue it!
 }
 add_action('wp_enqueue_scripts', 'theme_styles'); // Add Theme Stylesheet

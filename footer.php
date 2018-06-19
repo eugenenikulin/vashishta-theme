@@ -50,7 +50,7 @@
         </div>
     </div>
 </footer>
-
+<?php if (get_field('lat', 48) && get_field('lng', 48) ) : ?>
 <script>
 
     function initMap() {
@@ -73,10 +73,13 @@
     }
 
 </script>
+
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoh_jCyYgbdGo06d1Qlt1LPvYMPhVbfD4
 &callback=initMap">
+
 </script>
+<?php endif; ?>
 <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@14/dist/smooth-scroll.polyfills.min.js"></script>
 <?php wp_footer(); ?>
 </body>

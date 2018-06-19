@@ -1057,39 +1057,49 @@ footer .copyrights {
   cursor: pointer;
   margin-top: 8px;
 }
-.testimonials .pagination {
+.testimonials .pagination,
+.teachers .pagination{
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
 }
 @media only screen and (max-width: 767px) {
-  .testimonials .pagination {
+  .testimonials .pagination,
+  .teachers .pagination {
     margin-top: 0;
   }
 }
-.testimonials .pagination .arrow {
+.testimonials .pagination .arrow,
+.teachers .pagination .arrow {
   padding: 5px;
 }
-.testimonials .pagination .arrow:hover svg:not(.disabled) path {
+.testimonials .pagination .arrow:hover svg:not(.disabled) path,
+.teachers .pagination  .arrow:hover svg:not(.disabled) path {
   fill: #f0972e;
 }
-.testimonials .pagination svg.disabled path {
+.testimonials .pagination svg.disabled path,
+ .teachers .pagination  svg.disabled path{
   fill: #C8C8C8;
 }
-.testimonials .pagination ul {
+.testimonials .pagination ul,
+.teachers .pagination ul {
   display: flex;
   margin: 0 10px;
 }
-.testimonials .pagination ul li {
+.testimonials .pagination ul li,
+.teachers .pagination ul li {
   list-style-type: none;
   padding: 5px;
 }
-.testimonials .pagination ul a li {
+.testimonials .pagination ul a li,
+.teachers .pagination ul a li {
   cursor: pointer;
 }
 .testimonials .pagination ul a li.active,
-.testimonials .pagination ul a li:hover {
+.testimonials .pagination ul a li:hover,
+.teachers .pagination ul a li.active,
+.teachers .pagination ul a li:hover {
   color: #f0972e;
   font-weight: 500;
 }
