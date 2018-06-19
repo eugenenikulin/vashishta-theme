@@ -39,7 +39,6 @@ $testimonials = new WP_Query(
         <img src="<?php echo $photodisplay; ?>" alt="">
         <div class="text">
             <h4><?php the_field('name'); ?></h4>
-            <div class="data"><?php echo date('F j, Y', strtotime(get_field('date'))); ?></div>
             <p><?php the_field('testimony'); ?></p>
             <div class="show-more">Show more</div>
         </div>
