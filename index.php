@@ -49,16 +49,14 @@ get_header();
 
             <div class="list">
                 <?php foreach ($courses as $course) {
-                    //var_dump($course['course']);
-                    the_post($course['course']->ID);
-                    $image = get_field('course_thumb');
-                    $courseTerm = get_the_category(); $courseTerm = $courseTerm[0];
-                    $title = get_field('course_title');
+                    $image = get_field('course_thumb',$course['course']->ID);
+                    $courseTerm = get_the_category($course['course']->ID); $courseTerm = $courseTerm[0];
+                    $title = get_field('course_title',$course['course']->ID);
                     if (!$title || $title == '')  {
                         $title = $courseTerm->name;
                     }
-                    $startDate = get_field('date_start'); $startDate = date('d M Y', strtotime($startDate));
-                    $endDate = get_field('date_end'); $endDate = date('d M Y', strtotime($endDate));
+                    $startDate = get_field('date_start',$course['course']->ID); $startDate = date('d M Y', strtotime($startDate));
+                    $endDate = get_field('date_end',$course['course']->ID); $endDate = date('d M Y', strtotime($endDate));
                      ?>
                     <a href="<?php echo get_category_link($courseTerm->term_id); ?>" class="item">
                         <div class="img-wr">
@@ -67,11 +65,11 @@ get_header();
                         </div>
                         <div class="text">
                             <h3><?php echo $title; ?></h3>
-                            <p><?php echo get_field('course_description') ? get_field('course_description') : '';  ?></p>
+                            <p><?php echo get_field('course_description',$course['course']->ID) ? get_field('course_description',$course['course']->ID) : '';  ?></p>
                             <div class="date"><?php echo $startDate; ?> - <?php echo $endDate; ?></div>
                         </div>
                     </a>
-                <?php } ?>
+                <?php wp_reset_query(); } ?>
             </div>
         </div>
     </section>
