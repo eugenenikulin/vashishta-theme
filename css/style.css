@@ -594,7 +594,7 @@ header .follow-us span {
     visibility: visible;
     opacity: 1;
     position: static;
-    padding: 0 0 0 30px;
+    padding: 0 0 0 15px;
     max-height: 0;
     overflow: hidden;
   }
