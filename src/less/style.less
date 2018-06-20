@@ -589,6 +589,16 @@ header{
 /* BEGIN: HP-slider */
 .slider{
   margin-top: 30px;
+  .owl-carousel .owl-item .item{
+    overflow: hidden;
+    background-position: center;
+    background-size: 100% auto;
+    img{
+      opacity: 0;
+      position: relative;
+      z-index: -1;
+    }
+  }
   &.main-page-slider{
 	margin-top: 30px;
 	.responsive(@desktop_large_width, {

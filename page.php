@@ -19,8 +19,10 @@ if (have_posts()) : the_post();
     <div class="sm-wrapper">
         <div class="owl-carousel owl-theme">
         	<?php $images = get_field('images');
-        	foreach ($images as $image) { ?>
-        	<div class="item"><img src="<?php echo $image['image']; ?>" alt=""></div>
+			foreach ($images as $image) { ?>
+				<div class="item" style="background-image: url('<?php echo $image['image']; ?>')">
+					<img src="https://via.placeholder.com/3840x1860" alt="">
+				</div>
         	<?php } ?>
         </div>
    </div>

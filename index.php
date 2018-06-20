@@ -19,7 +19,9 @@ get_header();
             <div class="owl-carousel owl-theme">
                 <?php $gallery = get_field('images', 'option');  ?>
                 <?php foreach ($gallery as $image) { ?>
-                    <div class="item"><img src="<?php echo $image['image']; ?>" alt=""></div>
+					<div class="item" style="background-image: url('<?php echo $image['image']; ?>')">
+						<img src="https://via.placeholder.com/3840x1860" alt="">
+					</div>
                 <?php } ?>
             </div>
        </div>
