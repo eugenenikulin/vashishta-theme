@@ -694,14 +694,10 @@ header .follow-us span {
   -webkit-transform: translate3d(0, -30px, 0);
           transform: translate3d(0, -30px, 0);
   left: 0;
-  -webkit-filter: brightness(100%);
-          filter: brightness(100%);
 }
 .courses-list .list .item.ie:hover .img-wr .card-img {
   -webkit-transform: translate3d(0, -30px, 0);
           transform: translate3d(0, -30px, 0);
-  -webkit-filter: brightness(100%);
-          filter: brightness(100%);
 }
 .courses-list .list .item .img-wr {
   position: relative;
@@ -722,8 +718,6 @@ header .follow-us span {
   -webkit-transform: translate3d(0, -20px, 0);
           transform: translate3d(0, -20px, 0);
   position: absolute;
-  /*-webkit-filter: brightness(80%);
-          filter: brightness(80%);*/
 }
 .courses-list .list .item .text {
   margin-top: -10px;
@@ -989,6 +983,42 @@ footer .copyrights {
 .teachers .block .teacher-information a:hover {
   color: #f0972e;
 }
+.teachers .pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+@media only screen and (max-width: 767px) {
+  .teachers .pagination {
+    margin-top: 0;
+  }
+}
+.teachers .pagination .arrow {
+  padding: 5px;
+}
+.teachers .pagination .arrow:hover svg:not(.disabled) path {
+  fill: #f0972e;
+}
+.teachers .pagination svg.disabled path {
+  fill: #C8C8C8;
+}
+.teachers .pagination ul {
+  display: flex;
+  margin: 0 10px;
+}
+.teachers .pagination ul li {
+  list-style-type: none;
+  padding: 5px;
+}
+.teachers .pagination ul a li {
+  cursor: pointer;
+}
+.teachers .pagination ul a li.active,
+.teachers .pagination ul a li:hover {
+  color: #f0972e;
+  font-weight: 500;
+}
 /* END: teachers */
 /*
  TESTIMONIALS STYLES
@@ -1057,49 +1087,39 @@ footer .copyrights {
   cursor: pointer;
   margin-top: 8px;
 }
-.testimonials .pagination,
-.teachers .pagination{
+.testimonials .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
 }
 @media only screen and (max-width: 767px) {
-  .testimonials .pagination,
-  .teachers .pagination {
+  .testimonials .pagination {
     margin-top: 0;
   }
 }
-.testimonials .pagination .arrow,
-.teachers .pagination .arrow {
+.testimonials .pagination .arrow {
   padding: 5px;
 }
-.testimonials .pagination .arrow:hover svg:not(.disabled) path,
-.teachers .pagination  .arrow:hover svg:not(.disabled) path {
+.testimonials .pagination .arrow:hover svg:not(.disabled) path {
   fill: #f0972e;
 }
-.testimonials .pagination svg.disabled path,
- .teachers .pagination  svg.disabled path{
+.testimonials .pagination svg.disabled path {
   fill: #C8C8C8;
 }
-.testimonials .pagination ul,
-.teachers .pagination ul {
+.testimonials .pagination ul {
   display: flex;
   margin: 0 10px;
 }
-.testimonials .pagination ul li,
-.teachers .pagination ul li {
+.testimonials .pagination ul li {
   list-style-type: none;
   padding: 5px;
 }
-.testimonials .pagination ul a li,
-.teachers .pagination ul a li {
+.testimonials .pagination ul a li {
   cursor: pointer;
 }
 .testimonials .pagination ul a li.active,
-.testimonials .pagination ul a li:hover,
-.teachers .pagination ul a li.active,
-.teachers .pagination ul a li:hover {
+.testimonials .pagination ul a li:hover {
   color: #f0972e;
   font-weight: 500;
 }

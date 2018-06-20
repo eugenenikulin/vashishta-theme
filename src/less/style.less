@@ -671,7 +671,7 @@ header{
             width: 100%;
             transform: translate3d(0, -30px, 0);
             left: 0;
-            filter: brightness(100%);
+            // filter: brightness(100%);
           }
         }
       }
@@ -680,7 +680,7 @@ header{
         .img-wr{
           .card-img{
             transform: translate3d(0, -30px, 0);
-            filter: brightness(100%);
+            // filter: brightness(100%);
           }
         }
       }
@@ -699,7 +699,7 @@ header{
           transition: 0.3s width, 0.3s transform, 0.3s left, 0.3s filter;
           transform: translate3d(0, -20px, 0);
           position: absolute;
-          filter: brightness(80%);
+        //   filter: brightness(80%);
         }
       }
       .text{
@@ -965,6 +965,44 @@ footer{
       }
       a:hover{
 		color: #f0972e;
+      }
+    }
+  }
+  .pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    .responsive(@tablets_width, {
+      margin-top: 0;
+    });
+    .arrow{
+      padding: 5px;
+      &:hover{
+        svg:not(.disabled){
+          path{
+            fill: #f0972e;
+          }
+        }
+      }
+    }
+    svg.disabled path{
+      fill: #C8C8C8;
+    }
+    ul{
+      display: flex;
+      margin: 0 10px;
+      li{
+        list-style-type: none;
+        padding: 5px;
+      }
+      a li {
+        cursor: pointer;
+        &.active,
+        &:hover{
+          color: #f0972e;
+          font-weight: 500;
+        }
       }
     }
   }
