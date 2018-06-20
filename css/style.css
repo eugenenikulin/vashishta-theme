@@ -722,8 +722,8 @@ header .follow-us span {
   -webkit-transform: translate3d(0, -20px, 0);
           transform: translate3d(0, -20px, 0);
   position: absolute;
-  -webkit-filter: brightness(80%);
-          filter: brightness(80%);
+  /*-webkit-filter: brightness(80%);
+          filter: brightness(80%);*/
 }
 .courses-list .list .item .text {
   margin-top: -10px;

@@ -253,7 +253,7 @@ function teachers_cpt() {
 		'description'           => __( 'Teachers', 'vashishta' ),
 		'labels'                => $labels,
 		'supports'              => array( 'title' ),
-		'hierarchical'          => false,
+		'hierarchical'          => true,
 		'public'                => true,
 		'show_ui'               => true,
 		'show_in_menu'          => true,
@@ -271,7 +271,7 @@ function teachers_cpt() {
 
 }
 add_action( 'init', 'teachers_cpt', 0 );
-
+add_post_type_support( 'teacher', 'page-attributes' );
 // Register Custom Post Type
 function testimonails_cpt() {
 

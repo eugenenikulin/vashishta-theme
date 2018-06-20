@@ -18,7 +18,6 @@ $testimonials = new WP_Query(
 		'post_type' => 'testimony',
 		'orderby' => 'menu_order',
 		'order' => 'ASC',
-		'meta_key' => 'date',
 		'posts_per_page' => '-1',
 	)
 ); ?>

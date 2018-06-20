@@ -23,6 +23,10 @@ $offset = ($curPage-1)*$ppp;
 $teachers = new WP_Query(
 	array(
 		'post_type' => 'teacher',
+        'order' => 'ASC',
+        'orderby' => 'menu_order',
+        'posts_per_page' => $ppp,
+        'offset' => $offset,
 	)
 );
 
@@ -70,10 +74,17 @@ $post_count = $teachers->max_num_pages * $ppp;
                 <a href="mailto:<?php the_field('email'); ?>"><?php the_field('email'); ?></a>
             </div>
         	<?php endif; ?>
-        	<?php if (get_field('website')) : ?>
+        	<?php if (get_field('website')) : 
+                $parsed = parse_url(get_field('website'));
+                if (empty($parsed['scheme'])) {
+                    $urlStr = 'http://' . ltrim(get_field('website'), '/');
+                }  else {
+                    $urlStr = get_field('website');
+                }
+                ?>
             <div>
                 <div class="img-wr"><img src="<?php echo get_template_directory_uri(); ?>/assets/svg/icon_web.svg" alt=""></div>
-                <a href="<?php the_field('website'); ?>"><?php the_field('website'); ?></a>
+                <a href="<?php echo $urlStr; ?>" target="_blank"><?php the_field('website'); ?></a>
             </div>
         	<?php endif; ?>
         </div>

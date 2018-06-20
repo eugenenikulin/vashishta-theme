@@ -46,12 +46,12 @@ $term_id = $term->term_id;
                          <?php the_field('curriculum_text','category_'.$term_id); ?>
                     </div>
                     <!-- Custom blocks -->
-                    <?php $customBlocks = get_field('custom_blocks'); ?>
-                    <?php  if (!empty($custom_blocks)) { ?>
-                        <?php foreach ($customBlocks as $cb) { ?>
+                    <?php $customBlocks = get_field('custom_blocks','category_'.$term_id); ?>
+                    <?php  if (!empty($customBlocks)) { ?>
+                        <?php foreach ($customBlocks as $cb) {  ?>
                         <div class="item">
-                            <h3> <?php echo $cb['title']; ?></h3>
-                                 <?php echo $cd['content']; ?>
+                            <h3><?php echo $cb['title']; ?></h3>
+                                 <?php echo $cb['content']; ?>
                         </div>
                         <?php } ?>
                     <?php } ?>
@@ -137,7 +137,7 @@ $term_id = $term->term_id;
                 <p>If you are interested in applying for this course please write to <a href="mailto:vasiyoga@gmail.com">vasiyoga@gmail.com</a>.</p>
             </div>
             <?php 
-            if (get_field('video_link','option')) {
+            if (get_field('video_link','category_'.$term_id)) {
             	preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', get_field('video_link','option'), $match);
                 $youtube_id = $match[1]; ?>
                 <div class="youtube-player" data-id="<?php echo $youtube_id; ?>"></div>
