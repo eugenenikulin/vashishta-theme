@@ -101,7 +101,16 @@ h3{
   font-weight: 500;
   color: #f0972e;
 }
-
+.wp-responsive-image {
+	max-width:@tablets_width;
+	height: 100%;
+	.responsive(@tablets_width, {
+			width:100%;
+			margin: 0 auto;
+			display: block;
+			padding: 10px 0;
+	  });
+}
 .notransition {
 	transition: none !important;
 }
