@@ -291,7 +291,8 @@ $(document).ready(function() {
     var $hpSlider = $('.slider .owl-carousel');
     $hpSlider.owlCarousel({
         loop: true,
-        autoplay: true,
+		autoplay: true,
+		autoplayHoverPause:true,
         items: 1,
         nav: true,
         dots: false,
@@ -419,10 +420,10 @@ $(document).ready(function() {
         $(document).on('click', '.custom-lightbox .arrow-wr.right', next);
         $(document).on('click', '.exit', destroy);
         $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-            if($(window).width() > 479){
+            // if($(window).width() > 479){
                 event.preventDefault();
                 init($(this))
-            }
+            // }
 		});
 		// Arrow keys for Lightbox
 		$(document).keyup(function (e) {

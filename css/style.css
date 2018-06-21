@@ -1562,7 +1562,7 @@ footer .copyrights {
   top: 0;
   z-index: 999;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
   display: table;
 }
@@ -1571,6 +1571,11 @@ footer .copyrights {
   vertical-align: middle;
   text-align: center;
   padding: 40px 60px;
+}
+@media only screen and (max-width: 480px) {
+  .custom-lightbox .table-cell {
+    padding: 0;
+  }
 }
 .custom-lightbox .wrap {
   padding-top: 30px;
@@ -1596,6 +1601,12 @@ footer .copyrights {
       -ms-user-select: none;
           user-select: none;
 }
+@media only screen and (max-width: 480px) {
+  .custom-lightbox .wrap .exit {
+    right: 16px;
+    top: -32px;
+  }
+}
 .custom-lightbox .wrap .arrow-wr {
   min-width: 100px;
   height: 100%;
@@ -1607,13 +1618,47 @@ footer .copyrights {
       -ms-user-select: none;
           user-select: none;
 }
+@media only screen and (max-width: 480px) {
+  .custom-lightbox .wrap .arrow-wr {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 3;
+    height: auto;
+    padding: 0;
+    min-width: 50px;
+  }
+  .custom-lightbox .wrap .arrow-wr.right {
+    right: 0;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    -webkit-transform: none;
+            transform: none;
+  }
+  .custom-lightbox .wrap .arrow-wr.left {
+    left: 0;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
+}
 .custom-lightbox .wrap .arrow-wr:hover.right img {
   -webkit-transform: translateX(4px);
           transform: translateX(4px);
 }
+@media only screen and (max-width: 480px) {
+  .custom-lightbox .wrap .arrow-wr:hover.right img {
+    -webkit-transform: none;
+            transform: none;
+  }
+}
 .custom-lightbox .wrap .arrow-wr:hover img {
   -webkit-transform: translateX(-4px);
           transform: translateX(-4px);
+}
+@media only screen and (max-width: 480px) {
+  .custom-lightbox .wrap .arrow-wr:hover img {
+    -webkit-transform: none;
+            transform: none;
+  }
 }
 .custom-lightbox .wrap .arrow-wr img {
   width: 50px;
@@ -1622,6 +1667,12 @@ footer .copyrights {
   transition: 0.3s transform;
   transition: 0.3s transform, 0.3s -webkit-transform;
 }
+@media only screen and (max-width: 480px) {
+  .custom-lightbox .wrap .arrow-wr img {
+    width: 30px;
+    height: 30px;
+  }
+}
 .custom-lightbox .wrap .img-wr {
   position: relative;
   min-width: 100px;
@@ -1629,6 +1680,7 @@ footer .copyrights {
 }
 .custom-lightbox .wrap .img-wr:before {
   content: "loading...";
+  color: black;
   position: absolute;
   left: 50%;
   top: 50%;

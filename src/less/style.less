@@ -612,7 +612,7 @@ header{
 	margin-top: 30px;
 	.responsive(@desktop_large_width, {
 		margin-top: 0px;
-	})
+	});
   }
   .responsive(@desktop_large_width, {
     margin-top: 0;
@@ -1581,103 +1581,141 @@ footer{
 }
 
 .custom-lightbox{
-  animation-name: lighboxAnimation;
-  animation-duration: 0.3s;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 999;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.4);
-  display: table;
-  .table-cell{
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-    padding: 40px 60px;
-  }
-  .wrap{
-    padding-top: 30px;
-    background-color: #FFF;
-	display: inline-block;
-	position: relative;
+	animation-name: lighboxAnimation;
+	animation-duration: 0.3s;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 999;
 	width: 100%;
-    .fl-wr{
-      display: flex;
-	  align-items: center;
-	  justify-content: center;
-    }
-    .exit{
-      position: absolute;
-      right: -40px;
-      top: 0;
-      cursor: pointer;
-      width: 20px;
-      height: 20px;
-      user-select: none;
-    }
-    .arrow-wr{
-      min-width: 100px;
-      height: 100%;
-      align-items: stretch;
-      padding: 20px 0;
-      cursor: pointer;
-      user-select: none;
-      &:hover{
-        &.right{
-          img{
-            transform: translateX(4px);
-          }
-        }
-        img{
-          transform: translateX(-4px);
-        }
-      }
-      img{
-        width: 50px;
-        height: 11px;
-        transition: 0.3s transform;
-      }
-    }
-    .img-wr{
-      position: relative;
-	  min-width: 100px;
+	height: 100vh;
+	background-color: rgba(0,0,0,0.4);
+	display: table;
+	.table-cell{
+	  display: table-cell;
+	  vertical-align: middle;
+	  text-align: center;
+	  padding: 40px 60px;
+	  .responsive(@mobile_width, {
+		  padding:0;
+	  });
+	}
+	.wrap{
+	  padding-top: 30px;
+	  background-color: #FFF;		
+	  display: inline-block;
+	  position: relative;
 	  width: 100%;
-      &:before{
-        content: "loading...";
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate3d(-50%, -50%, 0);
-      }
-      img{
-        position: relative;
-        z-index: 2;
-        max-width: 100%;
-        max-height: 70vh;
-		width: auto;
-        .responsive(@tablets_width, {
-          max-height: 60vh;
-        });
-        &.vertical{
-          width: auto;
-        }
-      }
-    }
-    h4{
-      line-height: 1.5;
-      font-size: 0.875rem;
-      height: 60px;
-      display: flex;
-      font-weight: 600;
-      justify-content: center;
-      align-items: center;
-      color: #323232;
-      padding: 0 40px;
-    }
+	  .fl-wr{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	  }
+	  .exit{
+		position: absolute;
+		right: -40px;
+		top: 0;
+		cursor: pointer;
+		width: 20px;
+		height: 20px;
+		user-select: none;
+		.responsive(@mobile_width, {
+			right: 16px;
+			top: -32px;
+		});
+	  }
+	  .arrow-wr{
+		min-width: 100px;
+		height: 100%;
+		align-items: stretch;
+		padding: 20px 0;
+		cursor: pointer;
+		.responsive(@mobile_width, {
+		  position: absolute;
+		  background-color: rgba(0,0,0,0.7);
+		  z-index:3;
+		  height: auto;
+		  padding: 0;
+		  min-width:50px;
+		  &.right {
+			  right:0;
+			  border-top-left-radius: 2px;
+			  border-bottom-left-radius: 2px;
+			  transform:none;
+		  }
+		  &.left {
+			  left:0;
+			  border-top-right-radius: 2px;
+			  border-bottom-right-radius: 2px;
+		  }
+		});
+		
+		user-select: none;
+		&:hover{
+		  &.right{
+			img{
+			  transform: translateX(4px);
+			  .responsive(@mobile_width,{
+				  transform:none;
+			  });
+			}
+		  }
+		  img{
+			  transform: translateX(-4px);
+			  .responsive(@mobile_width,{
+				  transform:none;
+			  });
+		  }
+		}
+		img{
+		  width: 50px;
+		  height: 11px;
+		  .responsive(@mobile_width, {
+			  width:30px;
+			  height: 30px;
+		  });
+		  transition: 0.3s transform;
+		}
+	  }
+	  .img-wr{
+		position: relative;
+		min-width: 100px;
+		width: 100%;
+		&:before{
+		  content: "loading...";
+		  color:black;
+		  position: absolute;
+		  left: 50%;
+		  top: 50%;
+		  transform: translate3d(-50%, -50%, 0);
+		}
+		img{
+		  position: relative;
+		  z-index: 2;
+		  max-width: 100%;
+		  max-height: 70vh;
+		  width: auto;
+		  .responsive(@tablets_width, {
+			max-height: 60vh;
+		  });
+		  &.vertical{
+			width: auto;
+		  }
+		}
+	  }
+	  h4{
+		line-height: 1.5;
+		font-size: 0.875rem;
+		height: 60px;
+		display: flex;
+		font-weight: 600;
+		justify-content: center;
+		align-items: center;
+		color: #323232;
+		padding: 0 40px;
+	  }
+	}
   }
-}
 
 /* END: photos */
 
