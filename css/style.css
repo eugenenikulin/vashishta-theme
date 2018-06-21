@@ -500,7 +500,7 @@ header .follow-us span {
             animation-delay: 0.3s;
   }
   header.opened .content .list {
-    max-width: 170px;
+    max-width: 300px;
     width: 100%;
   }
   header.opened .content > * {
