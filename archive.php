@@ -107,6 +107,15 @@ $term_id = $term->term_id;
                     		<?php } ?>
                     	</div>
                     <?php } ?>
+                    <?php $cBlocks = get_field('custom_blocks'); ?>
+                    <?php if ($cBlocks && !empty($cBlocks)) { ?>
+                        <?php foreach ($cBlocks as $block) { ?>
+                            <div class="item">
+                                <h3><?php echo $block['heading']; ?></h3>
+                                <p><?php echo $block['text']; ?></p>
+                            </div>
+                        <?php } ?>
+                    <?php } ?>
                 	<?php endif; ?>
                     <p class="under-text">The organisation and payment of flights to India is the responsibility of the student.</p>
 
