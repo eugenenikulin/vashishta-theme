@@ -47,6 +47,29 @@ $term_id = $term->term_id;
 
                          <?php the_field('curriculum_text','category_'.$term_id); ?>
                     </div>
+                    <?php $teachers = get_field('teachers','category_'.$term_id); ?>
+                    <?php if (!empty($teachers)) : ?>
+                    <div class="teachers-list">
+                        <h3>Teachers</h3>
+                        <div class="fl-wr">
+                            <?php foreach ($teachers as $teacher) { ?>
+                                <div class="block">
+                                    <?php $img = $teacher['photo'];  ?>
+                                    <?php if ($img) { ?>
+                                        <img src="<?php echo $img['sizes']['testimony-photo']; ?>" alt="">
+                                    <?php } else { ?>
+                                        <img src="https://via.placeholder.com/80x80" alt="">
+                                    <?php } ?>
+                                    <div class="text">
+                                        <h4><?php echo $teacher['name']; ?></h4>
+                                        <div class="data"><?php echo $teacher['position'] ?></div>
+                                        <p><?php echo $teacher['content']; ?></p>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <?php endif; ?>
                     <!-- Custom blocks -->
                     <?php $customBlocks = get_field('custom_blocks','category_'.$term_id); ?>
                     <?php  if (!empty($customBlocks)) { ?>
@@ -121,28 +144,6 @@ $term_id = $term->term_id;
 
                 </div>
             </div>
-            <?php $teachers = get_field('teachers','category_'.$term_id); ?>
-            <?php if (!empty($teachers)) : ?>
-            <div class="teachers-list">
-                <h3>Teachers</h3>
-                <div class="fl-wr">
-                	<?php foreach ($teachers as $teacher) {  $teacher = $teacher['teacher'];  ?>
-                		<div class="item">
-                			<?php $img = get_field('photo',$teacher->ID);  ?>
-                			<?php if ($img) { ?>
-                				<img src="<?php echo $img['sizes']['teacher-photo']; ?>" alt="">
-                			<?php } else { ?>
-                				<img src="https://via.placeholder.com/80x80" alt="">
-                			<?php } ?>
-	                        <div>
-	                            <h4><?php echo $teacher->post_title; ?></h4>
-	                            <p><?php echo get_field('position',$teacher->ID); ?></p>
-	                        </div>
-	                    </div>
-                	<?php } ?>
-                </div>
-            </div>
-            <?php endif; ?>
             <div class="how-to-apply">
                 <h3>How to Apply</h3>
                 <p>If you are interested in applying for this course please write to <a href="mailto:vasiyoga@gmail.com">vasiyoga@gmail.com</a>.</p>
