@@ -84,6 +84,11 @@ h3 {
   font-weight: 500;
   color: #f0972e;
 }
+h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
 .wp-responsive-image {
   max-width: 767px;
   height: 100%;
@@ -1462,6 +1467,55 @@ footer .copyrights {
   display: block;
   padding-top: 15px;
   border-top: 1px solid #414141;
+}
+.courses .teachers-list .block {
+  display: flex;
+  margin-bottom: 30px;
+}
+.courses .teachers-list .block:last-child .text {
+  border-bottom: none;
+}
+.courses .teachers-list .block img {
+  margin-right: 40px;
+  float: left;
+  min-width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+@media only screen and (max-width: 767px) {
+  .courses .teachers-list .block img {
+    min-width: 80px;
+    height: 80px;
+    margin-right: 20px;
+  }
+}
+.courses .teachers-list .block .text {
+  float: left;
+  min-height: 160px;
+}
+.courses .teachers-list .block .text.hidden p {
+  max-height: 74px;
+  overflow: hidden;
+}
+@media only screen and (max-width: 767px) {
+  .courses .teachers-list .block .text.hidden p {
+    max-height: 53px;
+  }
+}
+.courses .teachers-list .block .text h4 {
+  font-size: 1.12500rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: inherit;
+}
+.courses .teachers-list .block .text .data {
+  color: #b4b4b4;
+  font-size: 0.875rem;
+  margin-bottom: 10px;
+}
+.courses .teachers-list .block .text > p {
+  padding-bottom: 20px;
+  color: inherit;
 }
 .courses .teachers-list .fl-wr {
   display: flex;

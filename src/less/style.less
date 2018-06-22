@@ -101,6 +101,12 @@ h3{
   font-weight: 500;
   color: #f0972e;
 }
+h4{
+	font-size: 1rem;
+	font-weight:600;
+	margin-bottom: 10px;
+}
+
 .wp-responsive-image {
 	max-width:@tablets_width;
 	height: 100%;
@@ -1471,6 +1477,55 @@ footer{
     }
   }
   .teachers-list{
+	.block{
+		display: flex;
+		margin-bottom: 30px;
+		&:last-child{
+		  .text{
+			border-bottom: none;
+		  }
+		}
+		img{
+		  margin-right: 40px;
+		  float: left;
+		  min-width: 120px;
+		  height: 120px;
+		  border-radius: 50%;
+		  .responsive(@tablets_width, {
+			min-width: 80px;
+			height: 80px;
+			margin-right: 20px;
+		  });
+		}
+		.text{
+		  float: left;
+		  min-height: 160px;
+		  &.hidden{
+			p{
+			  max-height: 74px;
+			  overflow: hidden;
+			  .responsive(@tablets_width, {
+				max-height: 53px;
+			  });
+			}
+		  }
+		  h4{
+			font-size: 1.12500rem;
+			margin-bottom: 10px;
+			font-weight: 600;
+			color:inherit;
+		  }
+		  .data{
+			color: #b4b4b4;
+			font-size: 0.875rem;
+			margin-bottom: 10px;
+		  }
+		  & > p {
+			  padding-bottom: 20px;
+			  color:inherit;
+		  }
+		}
+	  }
     .fl-wr{
       display: flex;
       flex-wrap: wrap;
