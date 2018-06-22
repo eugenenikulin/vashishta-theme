@@ -51,7 +51,6 @@ $term_id = $term->term_id;
                     <?php if (!empty($teachers)) : ?>
                     <div class="teachers-list">
                         <h3>Teachers</h3>
-                        <div class="fl-wr">
                             <?php foreach ($teachers as $teacher) { ?>
                                 <div class="block">
                                     <?php $img = $teacher['photo'];  ?>
@@ -67,7 +66,6 @@ $term_id = $term->term_id;
                                     </div>
                                 </div>
                             <?php } ?>
-                        </div>
                     </div>
                     <?php endif; ?>
                     <!-- Custom blocks -->
