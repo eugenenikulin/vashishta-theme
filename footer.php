@@ -28,7 +28,7 @@
             <div class="left">
                 <div class="address-info">
                     <div class="address">
-                       <?php the_field('adresse',48); ?>
+                       <?php the_field('footer_address',48); ?>
                     </div>
                     <div class="email mt-28">
                         <img class="svg" src="<?php echo get_template_directory_uri(); ?>/assets/svg/icon_mail.svg" alt="">
