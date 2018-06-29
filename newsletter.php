@@ -14,7 +14,7 @@ if (empty($isset_email)) {
 			'%s'
 		)
 	);	
-	$to = 'nikulinevg@gmail.com';
+	$to = 'vasiyoga@gmail.com';
 	$subj = 'User '.$email. ' just subscribed for news';
 	$message = 'Dear, admin! User '.$email. ' just subscribed for news';
 	wp_mail( $to, $subj, $message);
