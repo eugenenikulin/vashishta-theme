@@ -274,15 +274,20 @@ $(document).ready(function() {
             e.preventDefault();
             if(validateEmail(email)){
                 $subscriptionForm.removeClass("error");
-                $.post( "PATH_HERE", { email: email })
+                $.post( "/wp-content/themes/vashishta/newsletter.php", { email: email })
                     .done(function( data ) {
-
+                        //console.log(data);
+                        if (data != '1') {
+                            $subscriptionForm.addClass("error");
+                        } else {
+                            $subscriptionForm.find("[name=email]").val("");
+                            $subscriptionPopUp.addClass("visible");
+                        }
                     });
                 // place it inside done after requestSuccess
-                $subscriptionForm.find("[name=email]").val("");
-                $subscriptionPopUp.addClass("visible");
+                
             }else{
-                $subscriptionForm.addClass("error");
+                
             }
         })
     }))();

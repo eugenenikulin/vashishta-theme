@@ -15,6 +15,32 @@ function wpdocs_theme_setup() {
     add_image_size( 'gallery-thumb', 	200, 200, true ); // (cropped)
 }
 
+function wpdocs_register_my_custom_menu_page() {
+    add_menu_page(
+        'Newsletter emails',
+        'Newsletter',
+        'edit_posts',
+        'newsletter-admin',
+        'newsletter_function',
+        'dashicons-email-alt',
+        6
+    );
+}
+add_action( 'admin_menu', 'wpdocs_register_my_custom_menu_page' );
+function newsletter_function() {
+	global $title;
+
+    print '<div class="wrap">';
+    print "<h1>$title</h1>";
+
+    $file = plugin_dir_path(__FILE__) . "newsletter-admin.php";
+    //var_dump($file);
+    if (file_exists($file)) {
+    	require $file;
+    }
+}
+
+
 function change_post_menu_label() {
     global $menu;
     global $submenu;
